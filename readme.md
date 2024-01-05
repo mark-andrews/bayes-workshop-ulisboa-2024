@@ -137,14 +137,14 @@ M <- brm(x ~ 1, data = data_df)
 The `priorexposure` package is a small ad hoc package just for this workshop.
 It is available on GitHub and can be installed as follows using `devtools`:
 ```r
-devtools::install_git("https://github.com/ntu-stats-training/ibdar23.git", subdir = "priorexposure")
+devtools::install_git("https://github.com/mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure")
 ```
 If `devtools` is not available, install it with `install.packages('devtools')`.
 
 Note that the command above is `devtools::install_git`, and not `devtools::install_github`, which is perhaps more commonly used.
 You can, however, use `devtools::install_github` as follows:
 ```r
-devtools::install_github("ntu-stats-training/ibdar23", subdir = "priorexposure")
+devtools::install_github("mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure")
 ```
 
 When using these installation commands from `devtools`, you are routinely asked to update all dependent packages.
@@ -152,5 +152,5 @@ Usually, you do *not* need to do this to get a working installation.
 If the dependent packages are relatively up to date, i.e. no more than a year old, then they should be fine, and you can skip any upgrading.
 You can also use `upgrade = 'never'` in the command itself, e.g. 
 ```r
-devtools::install_github("ntu-stats-training/ibdar23", subdir = "priorexposure", upgrade = 'never')
+devtools::install_github("mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure", upgrade = 'never')
 ```
