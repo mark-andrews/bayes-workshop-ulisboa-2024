@@ -1,156 +1,59 @@
-# Software requirements
+# Introduction to Bayesian Data Analysis with R
 
-The required software for this workshop is all free and open source and will run identically on Windows, Mac OS X, and Linux platforms.
+Bayesian methods are now increasingly widely in data analysis across most
+scientific research fields.  Given that Bayesian methods differ conceptually
+and theoretically from their classical statistical counterparts that are
+traditionally taught in statistics courses, many researchers do not have
+opportunities to learn the fundamentals of Bayesian methods, which makes using
+Bayesian data analysis in practice more challenging.  The aim of this course is
+to provide a solid introduction to Bayesian methods, both theoretically and
+practically.  We will begin by teaching the fundamental concepts of Bayesian
+inference and Bayesian modelling, including how Bayesian methods differ from
+their classical statistics counterparts, and show how to do Bayesian data
+analysis in practice in R.  We then provide a solid introduction to Bayesian
+approaches to these topics using R and the `brms` package.  We begin by
+covering Bayesian approaches to linear regression.  We will then proceed to
+Bayesian approaches to generalized linear models, including binary logistic
+regression, ordinal logistic regression, Poisson regression, zero-inflated
+models, etc.  Finally, we will cover Bayesian approaches to multilevel and
+mixed effects models.  Throughout this course, we will be using, via the brms
+package, Stan based Markov Chain Monte Carlo (MCMC) methods.
 
-There are seven main pieces of software to install:
+## Software
 
--   [R](https://www.r-project.org/): An environment for statistical computing.
--   [Rstudio](https://www.rstudio.com/): An integrated development environment for using R.
--   [tidyverse](https://www.tidyverse.org/): A bundle of R packages to use R the modern way.
--   Miscellaneous R packages: Other vital, or just handy, R packages.
--   [Stan](http://mc-stan.org/): A Bayesian probabilistic modelling language.
--   [brms](https://github.com/paul-buerkner/brms): An R package to interface with [Stan](http://mc-stan.org/).
--   An ad hoc R package named `priorexposure`.
+Instructions on how to install the necessary software are [here](software.md).
 
-All of the above installation should be easy and painless except
-possibly for the installation of [Stan](http://mc-stan.org/), which can
-possibly be tricky because it is an external program and requires
-addition programming tools like C++ libraries and compilers etc.
-However, in the instructions below there are links to pages that provide
-ample detail on how to install and test [Stan](http://mc-stan.org/) and
-all its dependencies.
 
-## Installing R
+# Course programme
 
-Go to the [R](https://www.r-project.org/) website and follow the links
-for downloading. On Windows, this should lead you to
+## Day 1
 
--   <https://cran.r-project.org/bin/windows/base/>.
+* Topic 1: We will begin with a overview of what Bayesian data analysis is in essence and how it fits into statistics as it practiced generally. Our main point here will be that Bayesian data analysis is effectively an alternative school of statistics to the traditional approach, which is referred to variously as the *classical*, or *sampling theory based*, or *frequentist* based approach, rather than being a specialized or advanced statistics topic. However, there is no real necessity to see these two general approaches as being mutually exclusive and in direct competition, and a pragmatic blend of both approaches is entirely possible.
 
-Downloading this and following the usual Windows installation process,
-you\'ll then have a full working version of R.
+* Topic 2: Introducing Bayes' rule. Bayes' rule can be described as a means to calculate the probability of causes from some known effects. As such, it can be used as a means for performing statistical inference. In this section of the course, we will work through some simple and intuitive calculations using Bayes' rule. Ultimately, all of Bayesian data analysis is based on an application of these methods to more complex statistical models, and so understanding these simple cases of the application of Bayes' rule can help provide a foundation for the more complex cases.
 
-On Macs, the installation procedure is essentially identical. The latest
-Mac installer should be available at
+* Topic 3: Bayesian inference in a simple statistical model. In this section, we will work through a classic statistical inference problem, namely inferring the bias on a coin after observing the a certain number of heads and tails from flips of that coin, or equivalent problems. This problem is easy to analyse completely with just the use of R, but yet allows us to delve into all the key concepts of all Bayesian statistics including the likelihood function, prior distributions, posterior distributions, maximum a posteriori estimation, high posterior density intervals, posterior predictive intervals, marginal likelihoods, Bayes factors, model evaluation of out-of-sample generalization.
 
--   <https://cran.r-project.org/bin/macosx/>.
 
-Download this and follow the usual Mac installation process to get a
-full working version of R for Macs.
+## Day 2
 
-## Installing Rstudio
 
-Using Rstudio is not strictly necessary. You can do all you need to do
-with R without using Rstudio. However, many people have found that using
-R is more convenient and pleasant when working through Rstudio. To
-install it, go to the [Rstudio](https://www.rstudio.com/) website,
-specifically to
+* Topic 4: The previous sections provide a so-called analytical approach to Bayesian models. This is where we can calculate desired quantities and distributions by way of simple formulae. However, analytical approaches to Bayesian analyses are only possible in a relatively restricted set of cases. On the other hand, numerical methods, specifically Markov Chain Monte Carlo (MCMC) methods can be applied to virtually any Bayesian model. In this section, we will re-perform the analysis presented in the previous section but using MCMC methods. For this, we will use the *brms* package in R that provides an exceptionally easy to use interface to Stan.
 
--   <https://www.rstudio.com/products/rstudio/download/>
+* Topic 5: Bayesian linear models. We begin by covering Bayesian linear regression. For this, we will use the `brm` command from the `brms` package, and we will compare and contrast the results with the standard `lm` command.
+By comparing and contrasting `brm` with `lm` we will see all the major similarities and differences between the Bayesian and classical approach to linear regression.
+We will, for example, see how Bayesian inference and model comparison works in practice and how it differs conceptually and practically from inference and model comparison in classical regression.
+As part of this coverage of linear models, we will also use categorical predictor variables and explore varying intercept and varying slope linear models.
 
-which will list all the available installers. Note that you just want
-the Rstudio *desktop* program. The Rstudio *server* is something else
-(basically it is for providing remote access to Rstudio hosted on Linux
-servers).
+## Day 3
 
-Again, you\'ll just follow the usual installation process for Windows or
-Macs to install Rstudio using these installers.
+* Topic 6: Extending Bayesian linear models. Classical normal linear models are based on strong assumptions that do not always hold in practice.
+For example, they assume a normal distribution of the residuals, and assume homogeneity of variance of this distribution across all values of the predictors.
+In Bayesian models, these assumptions are easily relaxed.
+For example, we will see how we can easily replace the normal distribution of the residuals with a t-distribution, which will allow for a regression model that is robust to outliers.
+Likewise, we can model the variance of the residuals as being dependent on values of predictor variables.
 
-## Installing the tidyverse packages
+* Topic 7: Bayesian generalized linear models. Generalized linear models include models such as logistic regression, including multinomial and ordinal logistic regression, Poisson regression, negative binomial regression, zero-inflated models, and other models. Again, for these analyses we will use the `brms` package and explore this wide range of models using real world data-sets. In our coverage of this topic, we will see how powerful Bayesian methods are, allowing us to easily extend our models in different ways in order to handle a variety of problems and to use assumptions that are most appropriate for the data being modelled.
 
-The so-called [tidyverse](https://www.tidyverse.org/) is a collection of
-interrelated R packages that implement essentially a new standard
-library for R. In other words, the
-[tidyverse](https://www.tidyverse.org/) gives us a bundle tools for
-doing commonplace data manipulation and visualization and programming.
-It represents the modern way to use R, and in my opinion, it\'s the best
-way to use R. All the [tidyverse](https://www.tidyverse.org/) packages
-can be installed by typing the following command in R:
-
-``` {.R}
-install.packages("tidyverse")
-```
-
-The main packages that are contained within the
-[tidyverse](https://www.tidyverse.org/) bundle are listed
-[here](https://www.tidyverse.org/packages/).
-
-## Installing Miscellaneous R packages
-
-There are a set of other R packages that we will or could use. Here are the main ones:
-``` {.R}
-install.packages("lme4")
-install.packages("tidybayes")
-install.packages("bayesplot") # will be installed anyway by `brms` (see below)
-install.packages("devtools")  # required to install `priorexposure` (see below)
-install.packages("latex2exp") # will be installed anyway by `priorexposure` (see below)
-```
-
-## Installing Stan
-
-Stan is a probabilistic programming language. Using the Stan language,
-you can define arbitrary probabilistic models and then perform Bayesian
-inference on them using
-[MCMC](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo),
-specifically using [Hamiltonian Monte
-Carlo](https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo).
-
-Stan is a external program to R; it does not need to be used with R. 
-However, one of the most common ways of using Stan is by using it through R and that is what we will be doing in this workshop.
-
-To use Stan with R, you need to install an R package called
-[rstan](http://mc-stan.org/users/interfaces/rstan). However, you also
-need additional external tools installed in order for
-[rstan](http://mc-stan.org/users/interfaces/rstan) to work.
-
-Instructions for installing rstan on can be found here:
-
-- <https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started>
-
-Specific instructions for different platforms can be found by following links from this page.
-
-## Installing brms
-
-If the installation of R, Rstudio and Stan seemed to go fine, you can
-get the [brms](https://github.com/paul-buerkner/brms) R package, which
-makes using Stan with R particularly easy when using conventional
-models.
-
-To get [brms](https://github.com/paul-buerkner/brms), install it just as you would any other R package, e.g. 
-```r
-install.packages('brms')
-```
-
-You can test that the installation of `brms` worked by running the following code, which should take around 1 minute to complete.
-
-```r
-library(tidyverse)
-library(brms)
-
-data_df <- tibble(x = rnorm(10))
-
-M <- brm(x ~ 1, data = data_df)
-```
-
-## `priorexposure`
-
-The `priorexposure` package is a small ad hoc package just for this workshop.
-It is available on GitHub and can be installed as follows using `devtools`:
-```r
-devtools::install_git("https://github.com/mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure")
-```
-If `devtools` is not available, install it with `install.packages('devtools')`.
-
-Note that the command above is `devtools::install_git`, and not `devtools::install_github`, which is perhaps more commonly used.
-You can, however, use `devtools::install_github` as follows:
-```r
-devtools::install_github("mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure")
-```
-
-When using these installation commands from `devtools`, you are routinely asked to update all dependent packages.
-Usually, you do *not* need to do this to get a working installation.
-If the dependent packages are relatively up to date, i.e. no more than a year old, then they should be fine, and you can skip any upgrading.
-You can also use `upgrade = 'never'` in the command itself, e.g. 
-```r
-devtools::install_github("mark-andrews/bayes-workshop-ulisboa-2024", subdir = "priorexposure", upgrade = 'never')
-```
+* Topic 10: Multilevel and mixed models. In this section, we will cover the multilevel and mixed effects variants of the regression models, i.e. linear, logistic, Poisson etc, that we have covered so far. In general, multilevel and mixed effects models arise whenever data are correlated due to membership of a group (or group of groups, and so on).
+For this, we use a wide range of real-world data-sets and problems, and move between linear, logistic, etc., models are we explore these analyses. We will pay particular attention to considering when and how to use varying slope and varying intercept models, and how to choose between maximal and minimal models. We will also see how Bayesian approaches to multilevel and mixed effects models can overcome some of the technical problems (e.g. lack of model convergence) that beset classical approaches.
