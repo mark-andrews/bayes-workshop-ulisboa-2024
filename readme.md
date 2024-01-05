@@ -4,23 +4,18 @@ The required software for this workshop is all free and open source and will run
 
 There are seven main pieces of software to install:
 
--   [R](https://www.r-project.org/): An environment for statistical
-    computing.
--   [Rstudio](https://www.rstudio.com/): An integrated development
-    environment for using R.
--   [tidyverse](https://www.tidyverse.org/): A bundle of R packages to
-    use R the modern way.
+-   [R](https://www.r-project.org/): An environment for statistical computing.
+-   [Rstudio](https://www.rstudio.com/): An integrated development environment for using R.
+-   [tidyverse](https://www.tidyverse.org/): A bundle of R packages to use R the modern way.
 -   Miscellaneous R packages: Other vital, or just handy, R packages.
--   [Stan](http://mc-stan.org/): A Bayesian probabilistic modelling
-    language.
--   [brms](https://github.com/paul-buerkner/brms): An R package to
-    interface with [Stan](http://mc-stan.org/).
+-   [Stan](http://mc-stan.org/): A Bayesian probabilistic modelling language.
+-   [brms](https://github.com/paul-buerkner/brms): An R package to interface with [Stan](http://mc-stan.org/).
 -   An ad hoc R package named `priorexposure`.
 
 All of the above installation should be easy and painless except
 possibly for the installation of [Stan](http://mc-stan.org/), which can
 possibly be tricky because it is an external program and requires
-addition programming tools like c++ libraries and compilers etc.
+addition programming tools like C++ libraries and compilers etc.
 However, in the instructions below there are links to pages that provide
 ample detail on how to install and test [Stan](http://mc-stan.org/) and
 all its dependencies.
@@ -82,10 +77,13 @@ The main packages that are contained within the
 
 ## Installing Miscellaneous R packages
 
-There are a bunch of other R packages that we either will use. Here are the main ones:
+There are a set of other R packages that we will or could use. Here are the main ones:
 ``` {.R}
 install.packages("lme4")
-install.packages("broom")
+install.packages("tidybayes")
+install.packages("bayesplot") # will be installed anyway by `brms` (see below)
+install.packages("devtools")  # required to install `priorexposure` (see below)
+install.packages("latex2exp") # will be installed anyway by `priorexposure` (see below)
 ```
 
 ## Installing Stan
@@ -97,9 +95,8 @@ inference on them using
 specifically using [Hamiltonian Monte
 Carlo](https://en.wikipedia.org/wiki/Hamiltonian_Monte_Carlo).
 
-In general, Stan is a external program to R; it does not need to be used
-with R. However, one of the most common ways of using Stan is by using
-it through R and that is what we will be doing in this workshop.
+Stan is a external program to R; it does not need to be used with R. 
+However, one of the most common ways of using Stan is by using it through R and that is what we will be doing in this workshop.
 
 To use Stan with R, you need to install an R package called
 [rstan](http://mc-stan.org/users/interfaces/rstan). However, you also
@@ -119,14 +116,12 @@ get the [brms](https://github.com/paul-buerkner/brms) R package, which
 makes using Stan with R particularly easy when using conventional
 models.
 
-To get [brms](https://github.com/paul-buerkner/brms), first start
-Rstudio (whether on Windows, Macs, Linux) and then run
-
+To get [brms](https://github.com/paul-buerkner/brms), install it just as you would any other R package, e.g. 
 ```r
 install.packages('brms')
 ```
 
-You can test that it worked by running the following code, which should take around 1 minute to complete.
+You can test that the installation of `brms` worked by running the following code, which should take around 1 minute to complete.
 
 ```r
 library(tidyverse)
@@ -139,7 +134,7 @@ M <- brm(x ~ 1, data = data_df)
 
 ## `priorexposure`
 
-The `priorexposure` package is a small ad hoc package just for this tutorial.
+The `priorexposure` package is a small ad hoc package just for this workshop.
 It is available on GitHub and can be installed as follows using `devtools`:
 ```r
 devtools::install_git("https://github.com/ntu-stats-training/ibdar23.git", subdir = "priorexposure")
