@@ -11,4 +11,4 @@ science_df <- read_csv('https://raw.githubusercontent.com/mark-andrews/bayes-wor
 owls <- read_csv('https://raw.githubusercontent.com/mark-andrews/bayes-workshop-ulisboa-2024/master/data/owls.csv')
 weight_df <- read_csv("https://raw.githubusercontent.com/mark-andrews/bayes-workshop-ulisboa-2024/main/data/weight.csv")
 blp_df <- read_csv("https://raw.githubusercontent.com/mark-andrews/bayes-workshop-ulisboa-2024/main/data/blp-short2.csv")
-jobsatisfaction_df <- read_csv("https://raw.githubusercontent.com/mark-andrews/bayes-workshop-ulisboa-2024/main/data/jobsatisfaction.csv")
+jobsatisfaction <- read_csv("https://raw.githubusercontent.com/mark-andrews/bayes-workshop-ulisboa-2024/main/data/jobsatisfaction.csv")
